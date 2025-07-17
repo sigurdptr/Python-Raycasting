@@ -99,10 +99,8 @@ def main() -> None:
             
             if event.type == pygame.MOUSEMOTION:
                 mouse_pos = Point(*event.pos)
-        
-        for block in block_map:
-            block.render(screen)
 
+        ray_map = []
         for a in range(360):
             ray_line_full = create_ray(mouse_pos, a, RAY_LENGTH)
 
@@ -113,12 +111,10 @@ def main() -> None:
                     break
 
             if not ray_any_collition:
-                pygame.draw.line(
-                    screen,
-                    (255, 255, 255),
-                    (ray_line_full.p1.x, ray_line_full.p1.y),
-                    (ray_line_full.p2.x, ray_line_full.p2.y)
-                )
+                ray_map.append((
+                    round(ray_line_full.p2.x),
+                    round(ray_line_full.p2.y)
+                ))
                 continue
 
             for lenght in range(0, RAY_LENGTH + RAY_SEGMENT, RAY_SEGMENT):
@@ -139,16 +135,18 @@ def main() -> None:
                             closest_point = point
                             closest_point_dist = distance
                     
-                    pygame.draw.circle(screen, RED, (closest_point.x, closest_point.y), 5)
-
-                    pygame.draw.line(
-                        screen,
-                        RED,
-                        (mouse_pos.x, mouse_pos.y),
-                        (closest_point.x, closest_point.y)
-                    )
+                    ray_map.append((
+                        round(closest_point.x),
+                        round(closest_point.y)
+                    ))
 
                     break
+        
+        # Render The Light casting
+        pygame.draw.polygon(screen, (255, 255, 100), ray_map)
+
+        for block in block_map:
+            block.render(screen)
 
         pygame.display.update()
         clock.tick()
