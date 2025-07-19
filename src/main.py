@@ -12,9 +12,6 @@ RAY_LENGTH = 1000
 RAY_SEGMENT = 100
 RESOLUTION = (1280, 720)
 
-BLACK = (0, 0, 0)
-RED = (255, 0, 0)
-
 raw_vertices = [
     [
         ((50, 50), (150, 50)),
@@ -27,13 +24,19 @@ raw_vertices = [
         ((1100, 200), (1100, 600)),
         ((1100, 600), (1000, 600)),
         ((1000, 600), (1000, 200))
-    ]
+    ],
+    [
+        ((400, 550), (800, 550)),
+        ((800, 550), (800, 650)),
+        ((800, 650), (400, 650)),
+        ((400, 650), (400, 550))
+    ],
 ]
 
 
-def create_block_map(raw_vertices) -> List[Block]:
+def create_block_map(verticies: List[List[Tuple[Tuple[int, int], Tuple[int, int]]]]) -> List[Block]:
     block_map = []
-    for verticy_list in raw_vertices:
+    for verticy_list in verticies:
         
         verticy_map = []
 
@@ -79,6 +82,8 @@ def main() -> None:
     
     pygame.init()
     screen = pygame.display.set_mode(RESOLUTION)
+    pygame.mouse.set_visible(False)
+
     clock = pygame.time.Clock()
 
     clock_t = Thread(
@@ -142,8 +147,9 @@ def main() -> None:
 
                     break
         
-        # Render The Light casting
+        # Render The Light casting and source
         pygame.draw.polygon(screen, (255, 255, 100), ray_map)
+        pygame.draw.circle(screen, (255, 0, 0), mouse_pos.pos, 10)
 
         for block in block_map:
             block.render(screen)
