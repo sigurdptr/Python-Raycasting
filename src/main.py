@@ -68,7 +68,7 @@ def get_distance(p1: Point, p2: Point) -> float:
 
 def show_fps(clock: object):
     while True:
-        print(clock.get_fps())
+        print(f"FPS: {int(clock.get_fps())}")
         sleep(1)
 
 
@@ -88,7 +88,6 @@ def main() -> None:
     screen = pygame.display.set_mode(RESOLUTION)
     clock = pygame.time.Clock()
     
-
     clock_t = Thread(
         target=show_fps,
         args=(clock,),
