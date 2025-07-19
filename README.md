@@ -12,9 +12,9 @@
 
 &nbsp;&nbsp;&nbsp;&nbsp;
 
-<h3 align="center">
+<h4 align="center">
     A simulation of the fundemental concept to build raytracing using segmented raycasting. Due to the low amount of blocks that light can collide with the most effective calculation would be to use 1 ray segment and get all collitions but this project was built to experiment with the possibility of more complex shapes with large amount of verticies. This project uses the CPU for calculating rays and collitions and is not optimized to be used directly in games.
-</h3>
+</h4>
 
 ## How to simulate
 
