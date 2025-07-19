@@ -81,10 +81,13 @@ def main() -> None:
     )
     
     pygame.init()
-    screen = pygame.display.set_mode(RESOLUTION)
+    
     pygame.mouse.set_visible(False)
+    pygame.display.set_caption("Raycasting")
 
+    screen = pygame.display.set_mode(RESOLUTION)
     clock = pygame.time.Clock()
+    
 
     clock_t = Thread(
         target=show_fps,
