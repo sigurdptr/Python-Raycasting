@@ -6,7 +6,7 @@
 
 <div align="center">
   <kbd>
-    <img src="assets/preview.gif" height=225px alt="landing-page">
+    <img src="assets/preview.gif" height=200px alt="landing-page">
   </kbd>
 </div>
 
